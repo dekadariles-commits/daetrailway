@@ -1,0 +1,585 @@
+<style>
+
+    /* RESPONSIVE MAP AREA */
+.map-wrapper{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    padding:10px;
+    box-sizing:border-box;
+}
+
+.map-container{
+    position:relative;
+    align-items: center;
+    margin: 0px auto;
+    max-width: 1080px;
+}
+
+/* MAP BACKGROUND */
+.map-container img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+/* STATION LABEL */
+.station{
+    text-decoration:none;
+    position:absolute;
+    transform:translate(-50%, -50%);
+    color:#ffffff;
+    background: #dd061c;
+    padding:0.25vw 0.45vw;
+    border-radius:0.4vw;
+    font-size:clamp(10px, 0.9vw, 16px);
+    white-space:nowrap;
+    cursor:pointer;
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        color 0.2s;
+}
+
+/* STATION LABEL HOVER */
+.station:hover{
+    background:#dd061c;
+    color:#ffffff;
+    transform:translate(-50%, -50%) scale(1.1);
+    font-weight:bold;
+    box-shadow:0 0 12px #dd061c;
+}
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Lucida Sans', sans-serif;
+    }
+
+    body{
+        background:#f4f7fb;
+        color:#222;
+    }
+
+    .topbar{
+        background:linear-gradient(135deg,#dd061c,#fed800);
+        color:white;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:18px 40px;
+        flex-wrap:wrap;
+    }
+
+/* HEADER */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo img{
+    height:50px;
+}
+
+.logo-link{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        text-decoration:none;
+        color:white;
+        }
+
+.logo-text{
+    font-size:24px;
+}
+
+/* HEADER MENU TEXT*/
+.header-menu{
+    font-size:24px;
+}
+
+.h2location{
+    align-items: center;
+}
+
+nav a{
+        color:white;
+        text-decoration:none;
+        margin-left:20px;
+}
+
+ul{
+    margin: 10px 0px;
+}
+
+p{
+    margin: 10px 0px;
+}
+
+/* HOMEPAGE BACKGROUND */
+    .hero{
+        padding:160px 20px;
+        text-align:center;
+        background:url(image/running01.png) center/cover;
+        color:white;
+    }
+
+    .museumbanner{
+        padding:160px 20px;
+        text-align:center;
+        background:url(image/museum01.png) center/cover;
+        color:white;
+    }
+
+    .museumsection{
+        padding: 40px 0px;
+    }
+
+    .museum-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    max-width:1080px;
+    margin:auto;
+    padding: 40px 0px 40px 0px;
+    }
+
+    .museum-card{
+    flex:1 1 calc(50% - 12px);
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    text-align:center;
+    }
+
+    .museum-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+    }
+
+    .museum-card h3{
+    font-size:1.2rem;
+    }
+
+    .museum-card p{
+    margin:0 20px 24px;
+    color:#555;
+    line-height:1.6;
+    }
+
+@media (max-width:768px){
+    .museum-card{
+        flex:1 1 100%;
+    }
+    }
+
+    .stationsbanner{
+        padding:160px 20px;
+        text-align:center;
+        background:url(image/running01.png) center/cover;
+        color:white;
+    }
+
+    .hero h1{
+        font-size:48px;
+        margin-bottom:10px;
+        text-shadow:2px 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .hero p{
+        font-size:20px;
+        text-shadow:1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    section{
+        padding: 0px 0px 20px 0px;
+        max-width:1080px;
+        margin:0px auto;
+    }
+
+    h2{
+        color:#dd061c;
+        padding: 40px 0px 20px 0px;
+        max-width: 1080px;
+        margin: 0px auto;
+    }
+
+    h3{
+       padding: 20px 0px; 
+    }
+
+    .text-center{
+        text-align: center;
+    }
+
+    .cards{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+        gap:20px;
+    }
+
+    .card{
+        background:white;
+        border-radius:12px;
+        overflow:hidden;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+        transition:0.3s;
+        padding: 10px;
+    }
+
+    .card img{
+        width:100%;
+        height:180px;
+        object-fit:cover;
+    }
+
+    .card-content{
+        padding: 0 15px 15px 15px;
+    }
+
+    footer{
+        background:#dd061c;
+        color:white;
+        text-align:center;
+        padding:20px;
+        margin-top:40px;
+    }
+
+    button{
+        background:#0077aa;
+        color:white;
+        border:none;
+        padding:10px 16px;
+        border-radius:8px;
+        cursor:pointer;
+        margin-top:10px;
+    }
+
+    button:hover{
+        background:#005f88;
+    }
+
+.history-list{
+    list-style-position: inside;
+}
+    
+/*Station Pages*/
+.station-sign {
+    width: 100%;
+    max-width: 700px;
+    margin: 40px auto;
+    background: #ffffff;
+    border: 2px solid #888;
+    padding: 25px;
+    position: relative;
+}
+
+.station-logo img{
+    height:70px;
+}
+/*End of Station Pages*/
+
+
+/* Logo */
+.logo-yellow {
+    color: #f0c800;
+}
+
+.logo-red {
+    color: #e60012;
+    margin-left: -18px;
+}
+
+/* Station Name */
+.station-name {
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Station Code */
+.station-code {
+    position: absolute;
+    top: 22px;
+    right: 30px;
+    width: 72px;
+    height: 72px;
+    border: 4px solid #e60012;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.station-name-h1{
+    font-size: 40px;
+}
+
+/* Line Area */
+.line-section {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Arrows */
+.arrow {
+    width: 0;
+    height: 0;
+}
+
+.arrow.left {
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 22px solid #f0c800;
+}
+
+.arrow.right {
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 22px solid #f0c800;
+}
+
+/* Colored Line */
+.line {
+    flex: 1;
+    display: flex;
+    height: 12px;
+}
+
+.yellow-part {
+    flex: 1;
+    background: #f0c800;
+}
+
+.red-part {
+    flex: 1.5;
+    background: #e60012;
+}
+
+/* Neighbor Stations */
+.neighbors {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 24px;
+    color: #555;
+}
+
+.neighbors-text {
+    text-decoration: none;
+    color: #555;
+}
+
+/*Timetable*/
+.timetable-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    padding: 0 80px;
+}
+.board{
+    flex:1 1 500px;
+    background:#ffffff;
+    border:1px solid #333;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+/*Station Page*/
+.station-code-small {
+    width: 54px;
+    height: 54px;
+    border: 4px solid #e60012;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    background: #ffffff;
+    color: #222;
+
+}
+
+.station-name-h3{
+    clear: both;
+    background: #fed800;
+    color: #222;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.station-name-text{
+    padding: 0px 0px 0px 20px;
+    margin-right: auto;
+}
+
+.timetable-link{
+    text-decoration: none;
+}
+
+.station-information{
+    display: flex;
+}
+
+.station-map{
+    width: 480px;
+    flex-shrink: 0;
+}
+
+.points-of-interest{
+    flex:auto;
+    padding: 0px 20px;
+}
+
+.station-card{
+    max-width: 960px;
+    margin: 40px auto;
+}
+
+/*Fare Column*/
+.fare-wrapper{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    margin: 0px auto;
+    max-width: 960px;
+}
+
+.fare-table{
+    display:grid;
+    grid-template-columns:1fr 120px 120px;
+    border:1px solid #444;
+    border-bottom:none;
+    border-right: none;
+}
+
+.fare-cell{
+    padding:12px;
+    border-right:1px solid #444;
+    border-bottom:1px solid #444;
+    background-color: white;
+}
+
+.fare{
+    text-align:right;
+}
+
+.fare-center{
+    text-align: center;
+}
+
+/* Remove bottom border from last row */
+.fare-table .cell:nth-last-child(-n+2){
+    border-bottom:none;
+}
+
+@media (max-width:768px){
+
+    .fare-wrapper{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+}
+
+@media (max-width:768px){
+    .fare-grid{
+        grid-template-columns: 2fr 80px;
+    }
+}
+/*Fare End*/
+
+
+@media (max-width:768px){
+    .timetable-container{
+        flex-direction:column;
+    }
+}
+
+.station-title{
+    text-align:center;
+    color:#cc0000;
+    font-size:42px;
+    font-weight:bold;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:24px;
+    margin-top:5px;
+}
+
+.destination{
+    text-align:center;
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+.destination-text{
+    margin-left:6px;
+    font-size:14px;
+}
+
+.yellow-line{
+    height:15px;
+    background:#f3d000;
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+td{
+    border-bottom:1px solid #444;
+    padding: 5px 10px;
+}
+
+.hour{
+    width:50px;
+    font-size:24px;
+    border-right:1px solid #444;
+    text-align:center;
+    /* background:yellow; */
+}
+
+.minute{
+    min-width:2ch;      /* aligns 1-digit and 2-digit minutes */
+    text-align:right;
+    font-size:24px;
+}
+
+.minute-text {
+    font-size:24px;
+}
+
+.red{
+    color:#dd061c;
+}
+
+.small{
+    font-size:14px;
+}
+
+.time-group{
+    display:inline-block;
+    margin-right:20px;
+    min-width: 120px;
+}
+
+</style>
